@@ -3,6 +3,8 @@
 # Dependency directories
 node_modules/
 
+config.yml
+
 # dotenv environment variables file
 .env
 .env.test

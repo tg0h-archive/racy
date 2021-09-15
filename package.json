@@ -9,7 +9,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "conf": "^10.0.3",
+    "dotenv": "^10.0.0",
     "got": "^11.8.2",
+    "js-yaml": "^4.1.0",
+    "json2csv": "^5.0.6",
     "yargs": "^17.1.1"
   },
   "bin": {
