@@ -8,5 +8,8 @@ yargs(hideBin(process.argv))
     .env('RACY')
     .middleware(setConfigMiddleware)
     .command(commands)
-    .argv;
+    // .wrap(yargs.terminalWidth()) // https://github.com/yargs/yargs/issues/155
+    .wrap(null) // https://github.com/yargs/yargs/issues/155
+    .epilogue('race until 4️⃣')
+    .argv
 

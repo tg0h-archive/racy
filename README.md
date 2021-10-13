@@ -26,7 +26,11 @@ Get
 Lookup
   - join with other lookup tables
 Projection
-  - select only the columns, depth you need
+  - width - select only the columns
+  - depth - how many levels
+Style
+  - colours
+  - conditional formatting
 Format
   - choose table, csv or json
   - automatically detect if redirect, not to use table

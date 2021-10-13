@@ -8,7 +8,7 @@
 // optional args but as array [bar...]
 let command = '*'
 
-let desc = 'ra ra cli'
+let desc = 'r4cy - release automation cli   (•_•)   ( •_•)>⌐■-■   (⌐■_■)   yaaaaas'
 let builder = function (yargs) {
     // return yargs.commandDir('remote_cmds')
     return yargs.help('h')

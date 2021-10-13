@@ -23,8 +23,8 @@ function formatFactory(format, {request, response}) {
     // todo - do i return the data or a function that returns the data? zzzzz
     // if i return a function, i can use functional programming, if i return the data, i'm stuck?
     const {config, table} = request.argv
-    //TODO: CODE SMELL - assumes that data is in response.data.items
-    const items = response.data.values
+    //TODO: CODE SMELL - assumes that data is an array in response.data
+    const items = response.data
     if (!format) {
         throw new Error('Error: format not provided')
     }

@@ -24,8 +24,6 @@ let builder = function (yargs) {
 // let aliases = ['d']
 
 let handler = async function (argv) {
-    console.log('argv', argv)
-
     const boardsPipeline = new Pipeline();
     boardsPipeline.use(jiraMiddleware)
     boardsPipeline.use(formatMiddleware)
