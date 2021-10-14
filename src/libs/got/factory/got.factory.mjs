@@ -1,4 +1,5 @@
 import {jira} from "../builder/jira.got.builder.mjs";
+import {gitlab} from "../builder/gitlab.got.builder.mjs";
 
 // params contain the urlPath, the request body, and the payloadKey
 // the key refers to the location of the payload
@@ -6,7 +7,8 @@ import {jira} from "../builder/jira.got.builder.mjs";
 // while boards are located in response.values ... zzz
 
 const gotBuilders = {
-    jira
+    jira,
+    gitlab,
 }
 
 function gotFactory(type) {

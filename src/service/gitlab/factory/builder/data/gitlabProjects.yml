@@ -1,0 +1,20 @@
+officer:
+  sg:
+    name: "officer sg"
+    id: 80
+  au:
+    name: "officer au"
+    id: 202
+  o:
+    name: "officer optimax"
+    id: 229
+cc:
+  sg:
+    name: "cc sg"
+    id: 118
+  au:
+    name: "cc au"
+    id: 118
+  opt:
+    name: "cc optimax"
+    id: 118
