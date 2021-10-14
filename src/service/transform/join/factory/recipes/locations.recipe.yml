@@ -1,0 +1,46 @@
+#  https://learnxinyminutes.com/docs/yaml/
+# schemas just contain the fields? what about metadata - optional etc
+tag: &tag
+  tagType:
+  serialNum:
+  fields:
+  tagId: 'tags._.name'
+checkpoint:
+  siteId:
+  active:
+  accountId: 'accounts._.name'
+  updatedAt:
+  parentId:
+  latitude:
+  longitude:
+  LocationID:
+  name:
+  tags:
+    - *tag
+location:
+  siteId:
+  active:
+  accountId: 'accounts._.name' #replace accountId by searching the accounts dictionary.  search for accoutns.<accountId>.name
+  updatedAt:
+  longitude:
+  address:
+  LocationID:
+  latitude:
+  postalCode:
+  tagType:
+  tags:
+    - *tag
+  # checkpoints contain an array of foreign keys :|, which point to the same locations table
+  checkpoints:
+# replace each string in checkpoint array with the locations dictionary.  lookup the locations dictionary by searching
+# with the string in this checkpoints array
+    - 'locations._'
+# how to nested join? after joining to locations, the joining stops :| 2021-09-23T07:10
+# solution, after joining, continue to search for join candidates with the joined object :|
+# this sounds like a candidate for ramda
+  name:
+  updatedBy:
+  clientId:
+
+
+

@@ -5,8 +5,9 @@ import {Pipeline} from "../core/pipeline.mjs";
 import {jiraMiddleware} from "../service/jira/jira.middleware.mjs";
 import {formatMiddleware} from "../service/format/format.middleware.mjs";
 import {outputMiddleware} from "../service/output/output.middleware.mjs";
+import {lookupMiddleware} from "../service/transform/lookup/lookup.middleware.mjs";
 
-let command = 'status'
+let command = '<status>'
 
 let desc = "run this command when users ask what's the flipping status?! (ノ ゜Д゜)ノ ︵ ┻━┻"
 
@@ -36,11 +37,14 @@ let builder = function (yargs) {
 // let aliases = ['d']
 
 let handler = async function (argv) {
+    //TODO: is there a better way to do this?
+    argv.command = argv._[0]
 
     const boardsPipeline = new Pipeline();
     boardsPipeline.use(jiraMiddleware)
-    boardsPipeline.use(formatMiddleware)
-    boardsPipeline.use(outputMiddleware)
+    boardsPipeline.use(lookupMiddleware)
+    // boardsPipeline.use(formatMiddleware)
+    // boardsPipeline.use(outputMiddleware)
 
 
     let initialContext = {request: {argv}, response: {}}

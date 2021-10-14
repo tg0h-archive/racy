@@ -1,20 +1,20 @@
 officer:
   sg:
-    name: "officer sg"
+    name: "argus-officer-android"
     id: 80
   au:
-    name: "officer au"
+    name: "argus-officer-flutter"
     id: 202
   o:
-    name: "officer optimax"
+    name: "optimax-officer-android"
     id: 229
 cc:
   sg:
-    name: "cc sg"
+    name: "argus-cc-ng"
     id: 118
   au:
-    name: "cc au"
+    name: "argus-cc-ng"
     id: 118
   opt:
-    name: "cc optimax"
+    name: "optimax-cc"
     id: 118

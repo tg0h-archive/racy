@@ -1,0 +1,63 @@
+# front ####################################
+argus-officer-flutter: 202
+argus_flutter_lib: 210
+argus-officer-android: 80
+argus-cc-ng: 118
+argusAdmin: 93 # ??
+argus-admin: 232 # ??
+argus-admin-app: 75 # ??
+argus-admin-test: 117 # ??
+argus-cc-test: 241 # cc playwright test
+argus-lib-android: 63 #??
+argus-lib-wb: 116 # ??
+
+optimax-cc: 231
+# middle ####################################
+argus-fabric: 85
+argus-graph: 108
+# back ####################################
+optimax-ws-tas: 235
+optimax-api: 242
+
+argus-auth: 78
+argus-ms-dashboard: 151 # argus cc dashboard cache service
+argus-ms-incident: 94
+argus-ms-incidentcoordinator: 100 # ??
+argus-ms-messaging: 99
+argus-ms-occurrence: 102
+argus-ms-scheduler: 98
+argus-ms-session: 92
+argus-ms-task: 90
+argus-ms-user: 88
+# argus fids flight dashboard
+argus-fids-consumer: 142
+argus-ms-cas: 152 # ??
+argus-services: 124 # ??
+argus-services-cas: 150 # ??
+argus-zscheduler: 198 # duty plan scheduling
+argus-zwebhook: 225 # symphony endpoint
+argus-face-sync: 187 # ??
+# cloud formation?
+argus-ci: 86
+argus-config-templates: 104
+argus-resize-image: 101 # ??
+argus-admin-ws: 79 # ??
+
+#argus-utils: 133
+#argus-data: 188
+#argus-test-android: 89
+#argus-ws-skel: 60
+#argus-analytics-old: 107
+#argus-api-test: 192
+#argus-supervisor-android: 81
+#argus-supervisor-ios: 82
+#argus-officer-ios: 83
+#argus-poc: 182
+#argus-qa-api-tests: 204
+#argus-qa-ui-tests: 205
+#argus-release-notes: 221
+#argus-cc-test-archive: 185
+#argus-cc-test-tim: 173
+#argus-ddb-streams: 201
+#argus-echo: 91
+#argus-media: 106
