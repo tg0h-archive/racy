@@ -1,7 +1,7 @@
 import got from 'got'
 import {authHeaderBuilder} from "./jiraHelper/authHeaderBuilder.mjs";
 
-const jira = async (url, authConfig, params) => {
+const jiraGotter = async (url, authConfig, params) => {
     let {urlPath, payloadKey} = params;
     let {username, password} = authConfig;
     let fullUrl = url + params.urlPath
@@ -41,5 +41,5 @@ const jira = async (url, authConfig, params) => {
     }
 }
 
-export {jira}
+export {jiraGotter}
 

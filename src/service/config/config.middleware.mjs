@@ -11,7 +11,6 @@ export function setConfigMiddleware(argv) {
         return config //the returned json object is appended to argv
     } else {
         // without any env, configure just returns the existing config
-        let test = configure()
         return configure()
     }
 }

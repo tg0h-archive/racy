@@ -1,4 +1,5 @@
 import {commitBranchesGitlabParamBuilder} from "./builder/commitBranches.gitlab.param.builder.mjs";
+import {mergeRequestGitlabParamBuilder} from "./builder/mergeRequests.gitlab.param.builder.mjs";
 
 // params contain the urlPath, the request body, and the payloadKey
 // the key refers to the location of the payload
@@ -7,7 +8,8 @@ import {commitBranchesGitlabParamBuilder} from "./builder/commitBranches.gitlab.
 
 
 const paramBuilders = {
-    commits: commitBranchesGitlabParamBuilder
+    commits: commitBranchesGitlabParamBuilder,
+    mergeRequests: mergeRequestGitlabParamBuilder
 }
 
 function paramFactory(command, attributes) {
