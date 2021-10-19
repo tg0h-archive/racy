@@ -1,4 +1,4 @@
-import {statusDictBuilder} from './builders/status/statusDictBuilder.mjs'
+import {statusDictBuilder} from './builders/status/status.dictBuilder.mjs'
 
 const dictBuilders = {status: statusDictBuilder}
 

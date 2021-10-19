@@ -1,14 +1,12 @@
-
 export class _ticketCache {
-    // use a closure to initialize the caches below
     constructor() {
         // ARG-123: <commitsha>
-        //stores latest commit for every ticket, use the ticket id as key,
-        this.ticketCommit = {}
+        // dictionary stores latest commit for every ticket, use the ticket id as key
+        this.ticketLatestCommit = {}
         this.ticketCommits = {} //stores all commits for every ticket
         this.ticketMentions = {}
         // ARG-123: <merge request #>
-        this.ticketMergeRequest = {}
+        this.ticketLatestMergeRequest = {}
         this.ticketMergeRequests = {}
         //stores all commits mentioned in every ticket
         // <sha>:
@@ -16,9 +14,9 @@ export class _ticketCache {
         this.mentions = []
         this.tickets = new Set()
 
-        this.mentionTypeMap = {
-            commit: this.ticketCommit,
-            'merge request': this.ticketMergeRequest
+        this.mapMentionTypeToCache = {
+            commit: this.ticketLatestCommit,
+            'merge request': this.ticketLatestMergeRequest
         }
     }
 
@@ -31,7 +29,7 @@ export class _ticketCache {
         //     this.ticketMergeRequest[ticket] = ref
         // }
 
-        this.mentionTypeMap[mentionType][ticket] = ref
+        this.mapMentionTypeToCache[mentionType][ticket] = ref
 
 
         // nullish assignment of array
@@ -43,10 +41,10 @@ export class _ticketCache {
 
     get cache() {
         return {
-            ticketCommit: this.ticketCommit,
+            ticketCommit: this.ticketLatestCommit,
             ticketCommits: this.ticketCommits,
             ticketMentions: this.ticketMentions,
-            ticketMergeRequest: this.ticketMergeRequest,
+            ticketMergeRequest: this.ticketLatestMergeRequest,
             ticketMergeRequests: this.ticketMergeRequests,
             commits: this.commits,
             mentions: this.mentions,
