@@ -1,9 +1,11 @@
 import got from 'got'
 import {authHeaderBuilder} from "./jiraHelper/authHeaderBuilder.mjs";
 
-const jiraGotter = async (url, authConfig, params) => {
+import {getGlobalConfig} from "../../../state/global.config.mjs";
+
+const jiraGotter = async (params, method) => {
+    let {url, username, password} = getGlobalConfig()
     let {urlPath, payloadKey} = params;
-    let {username, password} = authConfig;
     let fullUrl = url + params.urlPath
     let authHeaders = authHeaderBuilder(username, password)
 
@@ -21,7 +23,7 @@ const jiraGotter = async (url, authConfig, params) => {
             if (!payloadKey) throw new Error('no payload key found')
 
             // const {statusCodej rawBody, body} = await got.get(url,
-            resp = await got.get(fullUrl, {headers: authHeaders, searchParams}).json()
+            resp = await got[method](fullUrl, {headers: authHeaders, searchParams}).json()
             data.push(...resp[payloadKey])
             startAt = startAt + resp.maxResults
 

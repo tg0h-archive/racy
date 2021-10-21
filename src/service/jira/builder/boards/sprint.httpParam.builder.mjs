@@ -1,11 +1,12 @@
 const sprintsHttpParamBuilder = function ({boardId, sprintId}) {
+    let http = this.http = {}
     if (boardId && sprintId) {
         // get tickets for sprint
-        this.urlPath = `/rest/agile/1.0/board/${boardId}/sprint/${sprintId}/issue`
-        this.payloadKey = "issues"
+        http.urlPath = `/rest/agile/1.0/board/${boardId}/sprint/${sprintId}/issue`
+        http.payloadKey = "issues"
     } else if (boardId && !sprintId) {
         // get all sprints
-        this.urlPath = `/rest/agile/1.0/board`
+        http.urlPath = `/rest/agile/1.0/board`
     }
 }
 

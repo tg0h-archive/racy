@@ -6,7 +6,6 @@ import {lookup} from './lookup.service.mjs'
 // it decides how to mutate 😁 (big word) the context
 // in this case, it has added a new namespace to the reponse
 export async function lookupMiddleware(ctx){
-    // console.log('lookup ctx',ctx)
     // console.log('data',ctx.response.data[0])
     // console.log('lookup argv',ctx.request.argv)
     const argv = ctx.request.argv

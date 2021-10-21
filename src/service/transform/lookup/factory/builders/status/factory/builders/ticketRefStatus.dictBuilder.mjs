@@ -19,7 +19,7 @@ const _ticketRefStatusDictBuilder = function (type, mentionStatuses) {
     let ticketLatestRefCache = ticketCache[mapTypeToCacheKey[type]]
     let ticketLatestMentionStatusDict = {}
 
-    //TODO: it will be fun to slowly add typing to this
+    // TODO: it will be fun to slowly add typing to this
     // if mention status is a status for the ticket's latest commit, add it to the dictionary
     mentionStatuses?.forEach((mentionStatus) => {
         let ticket = mentionStatus.ticket

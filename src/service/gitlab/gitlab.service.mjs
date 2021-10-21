@@ -6,10 +6,10 @@ import {paramFactory} from "./factory/gitlabParam.factory.mjs";
 // ability to delay the api call - return a function instead of calling for me
 
 const gitlab = async (command, attributes) => {
-    const gitlabHttpParams = paramFactory(command, attributes)
+    const {http, cache = {ttl: 3600}} = paramFactory(command, attributes)
 
     try {
-        const resp = await gotFactory('gitlab')(gitlabHttpParams)
+        const resp = await gotFactory('gitlab')(http, 'get', cache)
         return resp
     } catch (error) {
         console.error('error', error)

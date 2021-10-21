@@ -14,6 +14,7 @@ export class _ticketCache {
         this.mentions = []
         this.tickets = new Set()
 
+        // TODO: what is this for ?
         this.mapMentionTypeToCache = {
             commit: this.ticketLatestCommit,
             'merge request': this.ticketLatestMergeRequest

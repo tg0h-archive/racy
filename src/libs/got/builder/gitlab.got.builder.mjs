@@ -1,11 +1,13 @@
 import got from 'got'
 import {getGlobalConfig} from "../../../state/global.config.mjs";
 
-const gitlabGotter = async (params) => {
+const gitlabGotter = async (params, method) => {
     let {urlPath, payloadKey} = params;
     // let {token} = authConfig;
 
     let {gitlab: {url, token}} = getGlobalConfig()
+    let x = getGlobalConfig()
+
     let authHeaders = {"PRIVATE-TOKEN": token}
 
     let fullUrl = url + params.urlPath
@@ -24,7 +26,7 @@ const gitlabGotter = async (params) => {
         // if (!payloadKey) throw new Error('no payload key found')
 
         // const {statusCode rawBody, body} = await got.get(url,
-        resp = await got.get(fullUrl, {headers: authHeaders}).json()
+        resp = await got[method](fullUrl, {headers: authHeaders}).json()
         if (payloadKey) {
             data.push(...resp[payloadKey])
         } else {

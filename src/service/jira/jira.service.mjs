@@ -7,11 +7,16 @@ const jira = async (argv) => {
     let command = argv._[0]
     // params contain the url path and the request body
     // code smell, passing all of argv to paramFactory
-    const httpParams = paramFactory(command, argv)
+
+    // default cche ttl to 1 hour if none provided by paramFactory
+    const {http, cache = {ttl: 3600}} = paramFactory(command, argv)
 
     try {
         let authConfig = {username: config.username, password: config.password}
-        const resp = await gotFactory('jira')(url, authConfig, httpParams)
+        // const resp = await gotFactory('jira')(url, authConfig, httpParams)
+        let jiraGotter = gotFactory('jira')
+        // todo: get is hardcoded :|
+        const resp = await jiraGotter(http, 'get', cache)
         return resp
     } catch (error) {
         console.error('error', error)

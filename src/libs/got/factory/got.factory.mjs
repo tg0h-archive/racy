@@ -1,5 +1,6 @@
 import {jiraGotter} from "../builder/jira.got.builder.mjs";
 import {gitlabGotter} from "../builder/gitlab.got.builder.mjs";
+import {createGotterProxy} from "../cache/gotter.proxy.mjs";
 
 // params contain the urlPath, the request body, and the payloadKey
 // the key refers to the location of the payload
@@ -17,7 +18,10 @@ function gotFactory(type) {
         throw new Error('Error: command not provided')
     }
     // returns a got function that can make a http call
-    return gotBuilders[type]
+    let gotter = gotBuilders[type]
+    let c = createGotterProxy(gotter)
+    // return gotBuilders[type]
+    return c
 }
 
 export {gotFactory}
