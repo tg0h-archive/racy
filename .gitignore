@@ -1,4 +1,5 @@
 .idea
+.log4brains.yml
 
 # Dependency directories
 node_modules/
