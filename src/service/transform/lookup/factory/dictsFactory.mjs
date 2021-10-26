@@ -9,7 +9,8 @@ async function dictsFactory(command, argv, data) {
     }
 
     const dictBuilder = dictBuilders[command]
-    const dictionary = dictBuilder(argv, data)
+    const dictionary = await dictBuilder(argv, data)
+    console.log('dictionary',dictionary)
     return dictionary
 }
 

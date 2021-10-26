@@ -24,10 +24,9 @@ const statusDictBuilder = async function (argv, data) {
     // what if there is an error?
     let mentionStatuses = await pMap(parsedMentions, gitlabPMapper)
 
-    let ticketCommitStatusDict = ticketStatusFactory('ticketCommitStatus',mentionStatuses)
-    console.log('ticketCommitStatusDict',ticketCommitStatusDict)
-    let ticketMergeRequestStatusDict = ticketStatusFactory('ticketMergeRequestStatus',mentionStatuses)
-    let ticketStatusDict = ticketStatusFactory('ticketStatus',mentionStatuses)
+    let ticketCommitStatus = ticketStatusFactory('ticketCommitStatus', mentionStatuses)
+    let ticketMergeRequestStatus = ticketStatusFactory('ticketMergeRequestStatus', mentionStatuses)
+    let ticketStatus = ticketStatusFactory('ticketStatus', mentionStatuses)
 
     // console.log('ticketCommitStatusDict',ticketCommitStatusDict)
     // console.log('ticketCommitStatusDict',ticketMergeRequestStatusDict)
@@ -42,7 +41,7 @@ const statusDictBuilder = async function (argv, data) {
     // buildDicts(mentions)
 
 
-    return {}
+    return {ticketCommitStatus, ticketMergeRequestStatus, ticketStatus}
 }
 
 export {statusDictBuilder}

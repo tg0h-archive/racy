@@ -13,7 +13,7 @@ export async function lookupMiddleware(ctx){
     // passing too much data is a code smell?
     // i should only pass in what the get service needs?
     let data = await lookup(ctx.response.data, argv)
-    // ctx.response.dicts = data
+    ctx.response.dicts = data
 
     return ctx
 }
