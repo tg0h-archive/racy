@@ -45,7 +45,7 @@ let handler = async function (argv) {
     //TODO: code SMELL?
     boardsPipeline.use(jiraMiddleware)
     boardsPipeline.use(lookupMiddleware)
-    // boardsPipeline.use(formatMiddleware)
+    boardsPipeline.use(formatMiddleware)
     // boardsPipeline.use(outputMiddleware)
 
 

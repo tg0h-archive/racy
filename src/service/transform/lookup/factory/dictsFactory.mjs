@@ -10,7 +10,8 @@ async function dictsFactory(command, argv, data) {
 
     const dictBuilder = dictBuilders[command]
     const dictionary = await dictBuilder(argv, data)
-    console.log('dictionary',dictionary)
+    // console.log('ticket status',dictionary.ticketStatus['ARG-3007'])
+    // console.log('ticket commit status',dictionary.ticketCommitStatus['ARG-3007'])
     return dictionary
 }
 

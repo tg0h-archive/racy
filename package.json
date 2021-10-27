@@ -9,11 +9,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cli-table3": "^0.6.0",
     "conf": "^10.0.3",
     "dotenv": "^10.0.0",
     "got": "^11.8.2",
     "js-yaml": "^4.1.0",
     "json2csv": "^5.0.6",
+    "lodash": "^4.17.21",
     "p-map": "^5.1.0",
     "ramda": "^0.27.1",
     "redis": "^4.0.0-rc.3",

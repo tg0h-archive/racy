@@ -1,0 +1,55 @@
+# map the ticket json.fields.status.id to the table column number
+statusColumns:
+  10000: # To Do
+    column: 0
+    icon: ⚪
+  10512: # Cancelled
+    column: 0
+    icon: 🟤️
+  10819: # Tested with Issues
+    column: 0
+    icon: 🔴️
+  3: # In Progress
+    column: 1
+    icon: 💪️
+  10818: # Feature Testing
+    column: 2
+    icon: 🟡️
+  10825: # To Merge to Develop
+    column: 2
+    icon: 🟢
+  10824: # Integration Test
+    column: 3
+    icon: 🟡
+  10822: # To Merge to Master or Release
+    column: 3
+    icon: 🟢
+  10816: # Regression Test
+    column: 4
+    icon: 🟡
+  10823: # Pending Production Deployment
+    column: 4
+    icon: 🟢
+  10766: # Done
+    column: 5
+    icon: 🚂
+ticket:
+  epic:
+    field: [ 'fields','epic','name' ]
+  issueType:
+    field: [ 'fields','issuetype','name' ]
+  fixVersion:
+    field: [ 'fields','fixVersions',0, 'name' ]
+  component:
+    field: [ 'fields','components', 0, 'name' ]
+  desc:
+    field: [ 'fields','summary' ]
+  key:
+    field: [ 'key' ]
+  ref:
+    field: [ 'key' ]
+
+
+
+
+
