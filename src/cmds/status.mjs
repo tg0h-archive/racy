@@ -7,6 +7,8 @@ import {formatMiddleware} from "../service/format/format.middleware.mjs";
 import {outputMiddleware} from "../service/output/output.middleware.mjs";
 import {lookupMiddleware} from "../service/transform/lookup/lookup.middleware.mjs";
 import {cache} from "../libs/got/cache/cache.mjs";
+import {joinMiddleware} from "../service/transform/join/join.middleware.mjs";
+import {sortMiddleware} from "../service/transform/sort/sort.middleware.mjs";
 
 let command = '<status>'
 
@@ -41,11 +43,13 @@ let handler = async function (argv) {
     //TODO: is there a better way to do this?
     argv.command = argv._[0]
 
-    const boardsPipeline = new Pipeline();
+    const pipeline = new Pipeline();
     //TODO: code SMELL?
-    boardsPipeline.use(jiraMiddleware)
-    boardsPipeline.use(lookupMiddleware)
-    boardsPipeline.use(formatMiddleware)
+    pipeline.use(jiraMiddleware)
+    pipeline.use(lookupMiddleware)
+    pipeline.use(joinMiddleware)
+    pipeline.use(sortMiddleware)
+    pipeline.use(formatMiddleware)
     // boardsPipeline.use(outputMiddleware)
 
 
@@ -53,7 +57,7 @@ let handler = async function (argv) {
 
     // TODO - how to set up and close cache, use middleware?
     // await cache.connect() //should only connect if cache is available
-    let context = await boardsPipeline.run(initialContext)
+    let context = await pipeline.run(initialContext)
         .catch(err => {
             console.error('Error running middleware', err)
         })

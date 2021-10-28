@@ -2,7 +2,7 @@
 import {locationsCsvFormatBuilder} from "./builders/csv/locations.csv.formatBuilder.mjs";
 import {jsonFormatBuilderProxy as json} from "./builders/json/json.formatBuilder.proxy.mjs";
 import {statusTableFormatBuilder} from "./builders/table/status/status.table.formatBuilder.mjs";
-import _ from 'lodash'
+// import _ from 'lodash'
 
 const csv = {Locations: locationsCsvFormatBuilder}
 const table = {status: statusTableFormatBuilder}
@@ -34,7 +34,7 @@ function formatFactory(format, {request, response}) {
     }
 
     const formatter = formatBuilders[format][command]
-    data = _.sortBy(data, ['epickey', 'components'])
+    // data = _.sortBy(data, ['epickey', 'components'])
 
     return formatter(data, dicts) //returns joined data todo mutates data :|
 }
