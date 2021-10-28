@@ -12,7 +12,7 @@ export class _ticketCache {
         // <sha>:
         this.commits = {}
         this.mentions = []
-        this.tickets = new Set()
+        this.tickets = {}
 
         // TODO: what is this for ?
         this.mapMentionTypeToCache = {
@@ -22,7 +22,7 @@ export class _ticketCache {
     }
 
 
-    update(ticketKey, parsedMention) {
+    addMention(ticketKey, parsedMention) {
         let {ticket, mentionType, ref} = parsedMention
         // if (mentionType === 'commit') {
         //     this.ticketCommit[ticket] = ref
@@ -37,7 +37,7 @@ export class _ticketCache {
         this.ticketMentions[ticket] ??= []
         this.ticketMentions[ticket].push(parsedMention)
         this.mentions.push(parsedMention)
-        this.tickets.add(ticket)
+        // this.tickets.add(ticket)
     }
 
     get cache() {
@@ -49,6 +49,11 @@ export class _ticketCache {
             ticketMergeRequests: this.ticketMergeRequests,
             commits: this.commits,
             mentions: this.mentions,
+            tickets: this.tickets,
         }
+    }
+
+    addTicket(ticket) {
+        this.tickets[ticket.key] = ticket
     }
 }

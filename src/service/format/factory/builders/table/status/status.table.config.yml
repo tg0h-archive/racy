@@ -48,6 +48,8 @@ ticket:
     field: [ 'key' ]
   ref:
     field: [ 'key' ]
+  subtasks: # contains the joined subtasks
+    field: [ '_subtasks' ]
 
 
 

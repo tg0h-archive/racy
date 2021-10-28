@@ -1,26 +1,21 @@
 // https://www.dofactory.com/javascript/design-patterns/builder
 import {LocationsJoinBuilder} from "./builders/locations.joinBuilder.mjs";
+import {statusJoinBuilder} from "./builders/status.joinBuilder.mjs";
 
 const joinBuilders = {
-    Locations: LocationsJoinBuilder
+    // Locations: LocationsJoinBuilder,
+    status: statusJoinBuilder
 }
 
-/***
- * gets the param builder, builds the param, returns the param
- * scan call does not provide attributes
- * @param tableName:  read | del | scan
- * @param response argv
- * @returns {Promise<*>}
- */
-function joinFactory(tableName, response) {
+function joinFactory(command) {
     //data is in data.Items
-    const {data, dicts} = response
-    if (!tableName) {
-        throw new Error('Error: tableName not provided')
+    // const {data, dicts} = response
+    if (!command) {
+        throw new Error('Error: command not provided')
     }
 
-    const join = joinBuilders[tableName]
-    return join(data, dicts) //returns joined data
+    const join = joinBuilders[command]
+    return join
 }
 
 export {joinFactory}

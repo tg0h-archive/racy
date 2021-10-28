@@ -69,7 +69,7 @@ function buildStatusTable(ticketStatusId, commitStatus, statusColumnsConfig) {
     statusRow[col] = icon
 
     let gitCol = getGitStatus(commitStatus)
-    if (col !== gitCol){
+    if (col !== gitCol) {
         statusRow[gitCol] = '💔'
     }
 
@@ -95,38 +95,70 @@ const statusTableFormatBuilder = function (data, dicts) {
     //TODO: BUG fix version contains mulitple values, get latest
     let getFixVersion = path(ticketConfig.fixVersion.field)
     let getIssueType = path(ticketConfig.issueType.field)
+    let getSubtasks = path(ticketConfig.subtasks.field)
 
     let commitStatusDict = dicts.ticketCommitStatus
     // console.log('commitStatd',commitStatusDict)
 
-    let statusTable = data.map((ticket) => {
+    let statusTable = []
 
+    // let statusTable = data.map((ticket) => {
+    function getTicketFields(ticket) {
         let epic = getEpic(ticket)
         let comp = getComponent(ticket)
         let desc = getDesc(ticket)
         let key = getKey(ticket)
         let issueType = getIssueType(ticket)
         let fixVersion = getFixVersion(ticket)
-
         let commitStatus = commitStatusDict[key]
         let ref = commitStatus?.ref
         let row = [epic, comp, issueType, desc, key, fixVersion, ref]
+        return row
+    }
 
+    data.forEach((ticket) => {
+
+
+        let row = getTicketFields(ticket)
+        let [epic, comp, issueType, desc, key, fixVersion, ref] = row
+
+        let commitStatus = commitStatusDict[key]
         // console.log('key is',key)
         // console.log('cs',cs)
 
 
         let ticketStatusId = ticket.fields.status.id
         let statusColumns = buildStatusTable(ticketStatusId, commitStatus, config.statusColumns)
-        row.push(...statusColumns)
+        // row.push(...statusColumns)
+        let parentRow = [...row, ...statusColumns]
+        statusTable.push(parentRow)
+
+        let subtasks = getSubtasks(ticket)
+        console.log('subtasks', subtasks)
+        if (subtasks?.length > 0) {
+            subtasks.forEach((ticket) => {
+                console.log('subtask key', ticket.key)
+                let row = getTicketFields(ticket)
+                let [epic, comp, issueType, desc, key, fixVersion, ref] = row
+                // console.log('hello')
+                let ticketStatusId = ticket.fields.status.id
+                let commitStatus = commitStatusDict[key]
+                let statusColumns = buildStatusTable(ticketStatusId, commitStatus, config.statusColumns)
+                // console.log('statusColumns',statusColumns)
+                // console.log('row',row)
+
+                statusTable.push([...row, ...statusColumns])
+            })
+        }
+
         // console.log('row',row)
-        return row;
     })
 
-    let colWidths=[10,15,7,40,null,null,10]
-    let head = ['epic','comp','type', 'desc','ticket','fixVersion','ref','tod','wip','bra','dev','stg','don']
+    let colWidths = [15, 15, 7, 50, null, null, 10]
+    let head = ['epic', 'comp', 'type', 'desc', 'ticket', 'fixVersion', 'ref', 'tod', 'wip', 'bra', 'dev', 'stg', 'don']
+    let style = {head: ['green'], compact: true}
 
-    let table = new Table({head, colWidths});
+    let table = new Table({head, colWidths, style});
     table.push(...statusTable)
     console.log(table.toString())
     //

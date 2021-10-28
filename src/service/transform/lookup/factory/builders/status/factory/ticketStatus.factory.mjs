@@ -1,10 +1,12 @@
 import {ticketRefStatusDictBuilder} from "./builders/ticketRefStatus.dictBuilder.mjs";
 import {ticketStatusDictBuilder} from "./builders/ticketStatus.dictBuilder.mjs";
+import {ticketDictBuilder} from "./builders/ticket.dict.builder.mjs";
 
 const dictBuilders = {
     ticketCommitStatus: ticketRefStatusDictBuilder('commit'),
     ticketMergeRequestStatus: ticketRefStatusDictBuilder('mergeRequest'),
-    ticketStatus: ticketStatusDictBuilder
+    ticketStatus: ticketStatusDictBuilder,
+    ticket: ticketDictBuilder
 }
 
 function ticketStatusFactory(dictType, mentionStatuses) {

@@ -8,12 +8,13 @@ import {ticketStatusFactory} from "./factory/ticketStatus.factory.mjs";
 const statusDictBuilder = async function (argv, data) {
     data.forEach((ticket) => {
         // a ticket without comments will still have a comment object with an empty comments array
+        ticketCache.addTicket(ticket)
         ticket.fields.comment.comments.forEach((comment) => {
             if (comment.author.displayName === 'AugmentTech DSFO') {
                 let parsedMention = parseMention(comment)
                 parsedMention.ticket = ticket.key
                 //ticket details are not stored, only the mention
-                ticketCache.update(ticket.key, parsedMention)
+                ticketCache.addMention(ticket.key, parsedMention)
             }
         })
     })
@@ -27,6 +28,7 @@ const statusDictBuilder = async function (argv, data) {
     let ticketCommitStatus = ticketStatusFactory('ticketCommitStatus', mentionStatuses)
     let ticketMergeRequestStatus = ticketStatusFactory('ticketMergeRequestStatus', mentionStatuses)
     let ticketStatus = ticketStatusFactory('ticketStatus', mentionStatuses)
+    let tickets = ticketStatusFactory('ticket')
 
     // console.log('ticketCommitStatusDict',ticketCommitStatusDict)
     // console.log('ticketCommitStatusDict',ticketMergeRequestStatusDict)
@@ -41,7 +43,7 @@ const statusDictBuilder = async function (argv, data) {
     // buildDicts(mentions)
 
 
-    return {ticketCommitStatus, ticketMergeRequestStatus, ticketStatus}
+    return {ticketCommitStatus, ticketMergeRequestStatus, ticketStatus, tickets}
 }
 
 export {statusDictBuilder}
