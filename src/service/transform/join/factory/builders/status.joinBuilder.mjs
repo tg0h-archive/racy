@@ -1,7 +1,5 @@
 const statusJoinBuilder = function (data, dicts) {
     let x = data
-    // console.log('data',data[0])
-    // console.log('dicts',dicts)
     let tickets = dicts.tickets
     let joined = data.map((ticket)=>{
        //if parent, join to subtask

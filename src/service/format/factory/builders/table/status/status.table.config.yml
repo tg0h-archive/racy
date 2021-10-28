@@ -5,16 +5,16 @@ statusColumns:
     icon: ⚪
   10512: # Cancelled
     column: 0
-    icon: 🟤️
+    icon: 🟤
   10819: # Tested with Issues
     column: 0
-    icon: 🔴️
+    icon: 🔴
   3: # In Progress
     column: 1
-    icon: 💪️
+    icon: 💪
   10818: # Feature Testing
     column: 2
-    icon: 🟡️
+    icon: 🟡
   10825: # To Merge to Develop
     column: 2
     icon: 🟢
@@ -33,6 +33,37 @@ statusColumns:
   10766: # Done
     column: 5
     icon: 🚂
+view: # the view layer structure of the table to be shown in the ui or sent to stdout etc
+  - header: 'epic'
+    width: 15
+    field: [ 'fields','epic','name' ]
+  - header: 'component'
+    width: 15
+    field: [ 'fields','components', 0, 'name' ]
+  - header: 'type'
+    width: 7
+    field: [ 'fields','issuetype','name' ]
+  - header: 'desc'
+    width: 10
+    field: [ 'fields','summary' ]
+  - header: 'ticket'
+    width:
+    field: [ 'key' ]
+  - header: 'ver'
+    width:
+    field: [ 'fields','fixVersions',0, 'name' ] #how to get latest, show all etc
+  - header: 'ref'
+    width: 8
+    field: [ 'key' ]
+    map: 'getRef' #supply a map function to apply it to the field
+model: # unlike the view, do not use an array, use named keys to easily access the model
+  key: # the json location to the ticket id, eg json.key == ARG-1234
+    field: [ 'key' ]
+  subtasks: # contains the joined subtasks
+    field: [ '_subtasks' ]
+  ticketStatusId:
+    field: [ 'fields','status','id' ]
+
 ticket:
   epic:
     field: [ 'fields','epic','name' ]
