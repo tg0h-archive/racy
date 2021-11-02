@@ -8,6 +8,7 @@ const sprintsHttpParamBuilder = function ({boardId, sprintId}) {
         // get all sprints
         http.urlPath = `/rest/agile/1.0/board`
     }
+    http.method = "get"
 }
 
 export {sprintsHttpParamBuilder}

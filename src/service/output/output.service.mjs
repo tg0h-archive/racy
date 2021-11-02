@@ -14,7 +14,7 @@ const output = (view,  argv) => {
         let output = outputFactory(outputType, view)
         output(view, outputFileName, format)
     } catch (err) {
-        console.log("Error", err);
+        throw new Error(err)
     }
 };
 export {output}

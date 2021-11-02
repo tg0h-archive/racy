@@ -16,10 +16,11 @@ const jira = async (argv) => {
         // const resp = await gotFactory('jira')(url, authConfig, httpParams)
         let jiraGotter = gotFactory('jira')
         // todo: get is hardcoded :|
-        const resp = await jiraGotter(http, 'get', cache)
+        const resp = await jiraGotter(http, http.method, cache)
         return resp
     } catch (error) {
-        console.error('error', error)
+        console.log('error',error)
+        // throw new Error(error)
     }
 }
 

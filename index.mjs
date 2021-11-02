@@ -10,6 +10,5 @@ yargs(hideBin(process.argv))
     .command(commands)
     // .wrap(yargs.terminalWidth()) // https://github.com/yargs/yargs/issues/155
     .wrap(null) // https://github.com/yargs/yargs/issues/155
-    .epilogue('race until 4️⃣')
     .argv
 

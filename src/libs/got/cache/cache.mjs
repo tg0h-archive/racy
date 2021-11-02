@@ -14,12 +14,6 @@ let config = {
 
 class Cache {
     constructor() {
-        // let x = getGlobalConfig()
-        // console.log('x',x)
-        // let redis
-
-        // override the global config with the passed in keys
-        // console.log('cache constructed! ###########################')
         this.config = config;
         this.client = createClient(config);
         this.client.on('error', (err) => console.log('Redis Client Error', err));
@@ -32,21 +26,14 @@ class Cache {
 
     async getKey(key) {
         // TODO: this is expensive!
-        // console.log('this client',this.client)
-        // await this.client.connect();
         const value = await this.client.get(key);
-        // await this.client.quit();
         return value
     }
 
     async setKey(key, value, expiry) {
         let string = JSON.stringify(value)
-        // console.log('string',string)
         // TODO: this is expensive!
-        // await this.client.connect();
-        // await this.client.setEx(key, expiry, string)
         expiry ? await this.client.setEx(key, expiry, string) : await this.client.set(key, string)
-        // this.client.quit()
     }
 
     async close() {

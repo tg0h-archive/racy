@@ -7,6 +7,5 @@ export async function filterMiddleware(ctx) {
         filter(ctx) //todo join mutates the data - is this ok? or should it return data not change it
     }
     //todo  response.data metadata is no longer accurate after filter
-    // console.log(JSON.stringify(ctx.response.data, null,2))
     return ctx
 }
