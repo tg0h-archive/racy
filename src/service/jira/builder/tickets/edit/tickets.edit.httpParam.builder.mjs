@@ -18,7 +18,6 @@ const ticketsEditHttpParamBuilder = function (argv) {
         ticketIds,
         prefix
     } = argv
-    console.log('argv',argv)
 
     // let arr = [label,fixVersion,component,title,points,comments,sprint,ticketIds]
 
@@ -43,7 +42,6 @@ const ticketsEditHttpParamBuilder = function (argv) {
 
     const updatePayload = Object.fromEntries(arr)
     http.json = {update: updatePayload}
-    console.log('http.json',http.json.update)
 
     http.method = "put"
 }

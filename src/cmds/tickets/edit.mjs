@@ -4,6 +4,7 @@ import {Pipeline} from "../../core/pipeline.mjs";
 import {jiraMiddleware} from "../../service/jira/jira.middleware.mjs";
 import {formatMiddleware} from "../../service/format/format.middleware.mjs";
 import {outputMiddleware} from "../../service/output/output.middleware.mjs";
+import {ticketDemultiplexerMiddleware} from "../../service/ticketDemultiplexer/ticket.demultiplexer.middleware.mjs";
 
 let command = 'edit <ticketIds...>'
 
@@ -15,7 +16,7 @@ let builder = function (yargs) {
     return yargs
         .positional('ticketIds', {
             type: 'array',
-            describe: 'one or more ticket ids',
+            describe: 'one or more ticket ids (ticket prefix (eg ARG) does not need to specified)',
             demand: true
         })
         .option('prefix', {
@@ -66,9 +67,10 @@ let handler = async function (argv) {
     argv.subCommand = 'edit'
     argv.commands = ['tickets', 'edit']
     const boardsPipeline = new Pipeline();
-    boardsPipeline.use(jiraMiddleware)
+    boardsPipeline.use(ticketDemultiplexerMiddleware)
+    // boardsPipeline.use(jiraMiddleware)
     // boardsPipeline.use(formatMiddleware)
-    boardsPipeline.use(outputMiddleware)
+    // boardsPipeline.use(outputMiddleware)
 
     let initialContext = {request: {argv}, response: {}}
     let context = await boardsPipeline.run(initialContext)
