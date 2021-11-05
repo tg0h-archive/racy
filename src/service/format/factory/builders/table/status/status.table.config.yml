@@ -49,6 +49,10 @@ view: # the view layer structure of the table to be shown in the ui or sent to s
   - header: 'ticket'
     width:
     field: [ 'key' ]
+  - header: 'links'
+    width:
+    field: [ 'fields', 'issuelinks' ]
+    map: 'getLinks' # iterate through all the links to get the FR or OTXSC service desk tickets
   - header: 'ver'
     width:
     field: [ 'fields','fixVersions',0, 'name' ] #how to get latest, show all etc
@@ -56,6 +60,7 @@ view: # the view layer structure of the table to be shown in the ui or sent to s
     width: 8
     field: [ 'key' ]
     map: 'getRef' #supply a map function to apply it to the field
+
 model: # unlike the view, do not use an array, use named keys to easily access the model
   key: # the json location to the ticket id, eg json.key == ARG-1234
     field: [ 'key' ]
@@ -63,6 +68,11 @@ model: # unlike the view, do not use an array, use named keys to easily access t
     field: [ '_subtasks' ]
   ticketStatusId:
     field: [ 'fields','status','id' ]
+
+links: # ticket links with these prefixes are shown in the links column
+  prefixes:
+    - 'OTXSC'
+    - 'ACF'
 
 ticket:
   epic:

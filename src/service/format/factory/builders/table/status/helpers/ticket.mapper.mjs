@@ -34,6 +34,18 @@ export class TicketMapper {
         return this.commitStatusDict[ticketId]?.ref
     }
 
+    getLinks(links) {
+        let linkedTicketKeys = links.filter((link) => {
+            let key = link.inwardIssue?.key ?? link.outwardIssue.key
+            let keyPrefix = key.match(/(?<prefix>.*)-/).groups.prefix
+            return this.config.links.prefixes.includes(keyPrefix)
+        }).map((link) => {
+            let key = link.inwardIssue?.key ?? link.outwardIssue.key
+            return key // returns OTXSC-1234 or ACF-1234
+        }).join() // concatenate with ,
+        return linkedTicketKeys
+    }
+
     map(ticket) {
         let jiraFields = this.getFields(ticket, this.config.view)
         let ticketId = path(this.config.model.key.field)(ticket)
