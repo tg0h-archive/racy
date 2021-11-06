@@ -2,7 +2,9 @@
 
 Path for the config file: `config/config.yml`
 
-The config file lives in the Racy repo wherever node installs it.
+Create a config file following the format below.
+
+Place the config file along with the Racy repo wherever node installs it.
 
 I haven't figured out how to have it live in an os-specific path yet.
 
