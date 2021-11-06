@@ -1,36 +1,30 @@
-# README
+# Racy
 
-## Semantic
+Racy is a command-line tool that manages your releases with Gitlab and Jira.
 
-type:
-- ci
-- docs
-- feat
-- fix
-- refactor
-- test
+Finding Jira tickets, updating them, keeping track of ticket dependencies in Service Desk, Jira or Gitlab, and moving the the ticket along to done is a lot of work.
 
-scope:
-- core
-- boards
-- backlog
-- epics
-- sprints
+To get rid of this drudgery, I came up with Racy.
 
-## Layers
+## Installation
 
-- Cache
-  - redis 
-Get
-  - 
-Lookup
-  - join with other lookup tables
-Projection
-  - width - select only the columns
-  - depth - how many levels
-Style
-  - colours
-  - conditional formatting
-Format
-  - choose table, csv or json
-  - automatically detect if redirect, not to use table
+### Node
+
+Install racy globally.
+
+```
+npm install --global
+```
+
+## Usage
+
+run `ra` to see what you can do with racy.
+
+### Configuration
+
+see the [configuration docs](docs/config.md)
+
+## Cool features
+
+- `ra status` displays a table that shows the jira ticket and its git commit status
+
