@@ -28,7 +28,10 @@ function proxy(gotter) {
                 return data
             } else {
                 data = await gotter(params, method)
-                cache.setKey(key, data, ttl)
+                //data might be undefined if there is an error in the api call
+                if (data) {
+                    cache.setKey(key, data, ttl)
+                }
             }
         } else {
             data = gotter(params, method)
