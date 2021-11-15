@@ -8,7 +8,9 @@ export const addFixVersions = (fixVersions) => {
     // if fixVersions is a name use name key
     // if fixVersions is an id use id key
     let jsonValueArray = fixVersions.map((fixVersion) => {
-        return {add: {name: fixVersion}}
+        let key = typeof fixVersion == 'number' ? 'id' : 'name'
+        // even if the id is a number, you have to surround it with double quotes. therefore, use toString()
+        return {add: {[key]: fixVersion.toString()}}
     })
     return ['fixVersions', jsonValueArray]
 }

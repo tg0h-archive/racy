@@ -29,16 +29,15 @@ const ticketsEditHttpParamBuilder = function (argv) {
     let body = {}
 
 
-    let labelBody = addLabels(labels)
-    let fixVersionBody = addFixVersions([fixVersion])
-    let components = addComponents([component])
-    let summaryValue = addSummary(summary)
-    let pointsValue = addPoints(points)
+    let arr = []
+    labels && arr.push(addLabels(labels))
+    fixVersion && arr.push(addFixVersions([fixVersion]))
+    component && arr.push(addComponents([component]))
+    summary && arr.push(addSummary(summary))
+    points && arr.push(addPoints(points))
 
     // might need to use separate api call for sprint
     // https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-agile-1-0-sprint-sprintid-issue-post
-    // let sprintValue = addSprint([sprint])
-    let arr = [labelBody, fixVersionBody, components, summaryValue,pointsValue]
 
     const updatePayload = Object.fromEntries(arr)
     http.json = {update: updatePayload}
