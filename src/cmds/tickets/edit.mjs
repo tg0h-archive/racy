@@ -4,7 +4,7 @@ import {Pipeline} from "../../core/pipeline.mjs";
 import {jiraMiddleware} from "../../service/jira/jira.middleware.mjs";
 import {formatMiddleware} from "../../service/format/format.middleware.mjs";
 import {outputMiddleware} from "../../service/output/output.middleware.mjs";
-import {ticketDemultiplexerMiddleware} from "../../service/ticketDemultiplexer/ticket.demultiplexer.middleware.mjs";
+import {demultiplexerMiddleware} from "../../service/demultiplexer/demultiplexer.middleware.mjs";
 
 let command = 'edit <ticketIds...>'
 
@@ -67,7 +67,7 @@ let handler = async function (argv) {
     argv.subCommand = 'edit'
     argv.commands = ['tickets', 'edit']
     const boardsPipeline = new Pipeline();
-    boardsPipeline.use(ticketDemultiplexerMiddleware)
+    boardsPipeline.use(demultiplexerMiddleware)
     // boardsPipeline.use(jiraMiddleware)
     // boardsPipeline.use(formatMiddleware)
     // boardsPipeline.use(outputMiddleware)

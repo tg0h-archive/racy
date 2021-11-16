@@ -1,8 +1,10 @@
-import {ticketDemultiplexer} from "./ticket.demultiplexer.service.mjs";
+import {demultiplexer} from "./demultiplexer.service.mjs";
 
-export async function ticketDemultiplexerMiddleware(ctx){
+export async function demultiplexerMiddleware(ctx){
     let argv = ctx.request.argv
-    ticketDemultiplexer(argv)
+    // TODO: data isn't a good name when the api call is an update and not a get?
+    let data = await demultiplexer(argv)
+    ctx.response.data = data
     // the command may require multiple calls to the jira service
     // this middleware mediates btw the command and jira
     // const argv = ctx.request.argv

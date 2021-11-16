@@ -9,6 +9,7 @@ import {lookupMiddleware} from "../service/transform/lookup/lookup.middleware.mj
 import {cache} from "../libs/got/cache/cache.mjs";
 import {joinMiddleware} from "../service/transform/join/join.middleware.mjs";
 import {sortMiddleware} from "../service/transform/sort/sort.middleware.mjs";
+import {demultiplexerMiddleware} from "../service/demultiplexer/demultiplexer.middleware.mjs";
 
 let command = '<status>'
 
@@ -18,15 +19,16 @@ let desc = "run this command when users ask what's the flipping status?! (ãƒŽ ã‚
 let builder = function (yargs) {
     // return yargs.commandDir('remote_cmds')
     return yargs
-        .option('board',{
-            alias: ['b','boardId'],
+        .option('board', {
+            alias: ['b', 'boardId'],
             default: 246,
             describe: 'the jira board id to show'
         })
-        .option('sprint',{
-            alias: ['s','sprintId'],
-            default: 780,
-            describe: 'the jira sprint id to show'
+        .option('sprints', {
+            alias: ['s', 'sprintIds'],
+            type: 'array',
+            describe: 'the jira sprint id to show',
+            demand: true
         })
         .option('format', {
             alias: 'f',
@@ -45,7 +47,8 @@ let handler = async function (argv) {
 
     const pipeline = new Pipeline();
     //TODO: code SMELL?
-    pipeline.use(jiraMiddleware)
+    pipeline.use(demultiplexerMiddleware)
+    // pipeline.use(jiraMiddleware)
     pipeline.use(lookupMiddleware)
     pipeline.use(joinMiddleware)
     pipeline.use(sortMiddleware)

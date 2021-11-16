@@ -1,4 +1,4 @@
-import {jira} from "../../../jira/jira.service.mjs";
+import {jira} from "../../../../jira/jira.service.mjs";
 import pMap from "p-map"
 
 export async function ticketEditDemultiplexer(argv) {

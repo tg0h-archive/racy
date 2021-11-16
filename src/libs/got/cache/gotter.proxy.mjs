@@ -14,7 +14,6 @@ export function createGotterProxy(gotter) {
     }
 }
 
-
 function proxy(gotter) {
     return async (params, method, cacheOptions) => {
         let {ttl, reload} = cacheOptions
