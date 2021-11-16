@@ -23,7 +23,7 @@ const gitlabGotter = async (params, method) => {
         }
         return data
     } catch (error) {
-        console.error('error', error)
+        // console.error('error', error)
     }
 }
 
