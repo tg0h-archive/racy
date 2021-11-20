@@ -46,6 +46,21 @@ export class TicketMapper {
         return linkedTicketKeys
     }
 
+    getFixVersions(fixVersions) {
+       let fixVersionNames = fixVersions.map((fixVersion) => {
+            return fixVersion.name
+        }).join() // concatenate with ,
+        return fixVersionNames
+    }
+
+    getComponents(components) {
+        //TODO - duplication
+        let componentNames = components.map((component) => {
+            return component.name
+        }).join() // concatenate with ,
+        return componentNames
+    }
+
     map(ticket) {
         let jiraFields = this.getFields(ticket, this.config.view)
         let ticketId = path(this.config.model.key.field)(ticket)

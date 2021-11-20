@@ -33,13 +33,15 @@ statusColumns:
   10766: # Done
     column: 5
     icon: 🚂
+
 view: # the view layer structure of the table to be shown in the ui or sent to stdout etc
   - header: 'epic'
     width: 15
     field: [ 'fields','epic','name' ]
   - header: 'component'
-    width: 15
-    field: [ 'fields','components', 0, 'name' ]
+#    width: 15
+    field: [ 'fields','components']
+    map: 'getComponents'
   - header: 'type'
     width: 7
     field: [ 'fields','issuetype','name' ]
@@ -55,7 +57,8 @@ view: # the view layer structure of the table to be shown in the ui or sent to s
     map: 'getLinks' # iterate through all the links to get the FR or OTXSC service desk tickets
   - header: 'ver'
     width:
-    field: [ 'fields','fixVersions',0, 'name' ] #how to get latest, show all etc
+    field: [ 'fields','fixVersions'] #how to get latest, show all etc
+    map: 'getFixVersions'
   - header: 'ref'
     width: 8
     field: [ 'key' ]
@@ -91,8 +94,3 @@ ticket:
     field: [ 'key' ]
   subtasks: # contains the joined subtasks
     field: [ '_subtasks' ]
-
-
-
-
-
