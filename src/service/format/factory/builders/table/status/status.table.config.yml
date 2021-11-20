@@ -55,6 +55,10 @@ view: # the view layer structure of the table to be shown in the ui or sent to s
     width:
     field: [ 'fields', 'issuelinks' ]
     map: 'getLinks' # iterate through all the links to get the FR or OTXSC service desk tickets
+  - header: 'linkStatus'
+    width:
+    field: [ 'fields', 'issuelinks' ]
+    map: 'getLinkStatus' # iterate through all the links to get the FR or OTXSC service desk tickets
   - header: 'ver'
     width:
     field: [ 'fields','fixVersions'] #how to get latest, show all etc

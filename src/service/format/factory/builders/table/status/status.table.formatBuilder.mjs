@@ -28,7 +28,8 @@ const statusTableFormatBuilder = function (data, dicts) {
 
     let c = getColWidths(config.view)
     let colWidths = getColWidths(config.view)
-    let head = ['epic', 'comp', 'type', 'desc', 'ticket', 'links', 'fixVersion', 'ref', 'td', 'ip', 'ut', 'dv', 'st', 'dn']
+    //TODO: table header is hardcoded
+    let head = ['epic', 'comp', 'type', 'desc', 'ticket', 'links', 'linkStatus', 'fixVersion', 'ref', 'td', 'ip', 'ut', 'dv', 'st', 'dn']
     let style = {head: ['green'], compact: true}
 
     let table = new Table({head, colWidths, style});

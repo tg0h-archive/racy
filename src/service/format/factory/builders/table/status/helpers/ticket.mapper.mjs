@@ -35,6 +35,7 @@ export class TicketMapper {
     }
 
     getLinks(links) {
+        // inwardIssue.fields.status.name
         let linkedTicketKeys = links.filter((link) => {
             let key = link.inwardIssue?.key ?? link.outwardIssue.key
             let keyPrefix = key.match(/(?<prefix>.*)-/).groups.prefix
@@ -44,6 +45,19 @@ export class TicketMapper {
             return key // returns OTXSC-1234 or ACF-1234
         }).join() // concatenate with ,
         return linkedTicketKeys
+    }
+
+    getLinkStatus(links) {
+        // inwardIssue.fields.status.name
+        let linkedTicketStatus = links.filter((link) => {
+            let key = link.inwardIssue?.key ?? link.outwardIssue.key
+            let keyPrefix = key.match(/(?<prefix>.*)-/).groups.prefix
+            return this.config.links.prefixes.includes(keyPrefix)
+        }).map((link) => {
+            let key = link.inwardIssue?.fields.status.name ?? link.outwardIssue.fields.status.name
+            return key // returns OTXSC-1234 or ACF-1234
+        }).join() // concatenate with ,
+        return linkedTicketStatus
     }
 
     getFixVersions(fixVersions) {
