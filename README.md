@@ -1,5 +1,7 @@
 # Racy
 
+see [architecture](docs/assets/racy-architecture.jpg)
+
 Racy is a command-line tool that makes release management with Gitlab and Jira easier.
 
 It wrestles with Jira tickets, finding them, updating them, keeping track of their dependencies in Service Desk, Jira or Gitlab and helps you to move your tickets to done.
