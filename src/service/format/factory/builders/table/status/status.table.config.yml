@@ -46,11 +46,14 @@ view: # the view layer structure of the table to be shown in the ui or sent to s
     width: 7
     field: [ 'fields','issuetype','name' ]
   - header: 'desc'
-    width: 10
+    width: 90
     field: [ 'fields','summary' ]
   - header: 'ticket'
     width:
     field: [ 'key' ]
+  - header: 'status'
+    width:
+    field: [ 'fields', 'status', 'name' ]
   - header: 'links'
     width:
     field: [ 'fields', 'issuelinks' ]
