@@ -27,6 +27,9 @@ statusColumns:
   10816: # Regression Test
     column: 4
     icon: 🟡
+  10821: # User Acceptance Test
+    column: 4
+    icon: 🟠
   10823: # Pending Production Deployment
     column: 4
     icon: 🟢
